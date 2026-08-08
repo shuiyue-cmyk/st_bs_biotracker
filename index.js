@@ -659,9 +659,10 @@ async function runWardrobePrepInference(ctx) {
   const wardrobePrepPrompt = String(document.getElementById('bs-bt-wardrobe-prep-prompt')?.value || settings.wardrobePrepPrompt || '').trim();
   const wardrobePrepMainCount = Math.max(1, Math.min(12, Math.floor(Number(document.getElementById('bs-bt-wardrobe-prep-main-count')?.value || settings.wardrobePrepMainCount || 3))));
   const wardrobePrepAccessoryCount = Math.max(0, Math.min(12, Math.floor(Number(document.getElementById('bs-bt-wardrobe-prep-accessory-count')?.value || settings.wardrobePrepAccessoryCount || 3))));
+  const includeStyleBook = document.getElementById('bs-bt-wardrobe-prep-style-book')?.checked ?? settings.wardrobePrepStyleBook === true;
   beginRegistryOperation('wardrobe', `正在为 ${targetName} 生成衣柜 JSON...`);
   try {
-    const result = await runRegistryWardrobeInference(ctx, { ...values, customNotes: '', skillPrompt: '', targetName, wardrobePrepPrompt, wardrobePrepMainCount, wardrobePrepAccessoryCount });
+    const result = await runRegistryWardrobeInference(ctx, { ...values, customNotes: '', skillPrompt: '', targetName, wardrobePrepPrompt, wardrobePrepMainCount, wardrobePrepAccessoryCount, includeStyleBook });
     const editor = document.getElementById('bs-bt-wardrobe-prep-json');
     if (editor) editor.value = JSON.stringify(result, null, 2);
     setWardrobePrepStatus('备装生成完成。可以手动微调 JSON，再套用备装。');
@@ -5310,6 +5311,8 @@ function applySettingsToForm(ctx) {
   setValue('bs-bt-wardrobe-prep-prompt', settings.wardrobePrepPrompt);
   setValue('bs-bt-wardrobe-prep-main-count', settings.wardrobePrepMainCount);
   setValue('bs-bt-wardrobe-prep-accessory-count', settings.wardrobePrepAccessoryCount);
+  const styleBookToggle = document.getElementById('bs-bt-wardrobe-prep-style-book');
+  if (styleBookToggle) styleBookToggle.checked = settings.wardrobePrepStyleBook === true;
   populateModelList(settings);
   setConnectStatus(settings.modelOptions.length > 0 ? `已缓存 ${settings.modelOptions.length} 个模型` : '尚未连接');
   syncRegisterPageOnOpen(ctx);
@@ -5887,6 +5890,8 @@ function readSettingsFromForm(ctx) {
   settings.wardrobePrepPrompt = String(getValue('bs-bt-wardrobe-prep-prompt')).trim();
   settings.wardrobePrepMainCount = Math.max(1, Math.min(12, Math.floor(Number(getValue('bs-bt-wardrobe-prep-main-count')) || 3)));
   settings.wardrobePrepAccessoryCount = Math.max(0, Math.min(12, Math.floor(Number(getValue('bs-bt-wardrobe-prep-accessory-count')) || 0)));
+  const styleBookToggle = document.getElementById('bs-bt-wardrobe-prep-style-book');
+  if (styleBookToggle) settings.wardrobePrepStyleBook = Boolean(styleBookToggle.checked);
   settings.targetNames = String(getValue('bs-bt-targets')).trim();
   settings.trackerWorldbookMode = normalizeWorldbookMode(getValue('bs-bt-tracker-worldbook-mode'));
   const filterNames = String(getValue('bs-bt-worldbook-filter-input')).trim();

@@ -138,6 +138,7 @@ export const DEFAULT_SETTINGS = Object.freeze({
   wardrobePrepPrompt: '',
   wardrobePrepMainCount: 3,
   wardrobePrepAccessoryCount: 3,
+  wardrobePrepStyleBook: false,
   targetNames: '',
   trackerWorldbookMode: 'exclude',
   trackerWorldbookExcludeNames: '',
