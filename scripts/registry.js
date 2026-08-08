@@ -1031,7 +1031,7 @@ function sanitizeChildren(value) {
         provider: item.provider ?? null,
         providerSources: Array.isArray(item.providerSources)
           ? [...item.providerSources]
-          : (item.provider ? String(item.provider).split('×').map((part) => part.trim()).filter(Boolean) : undefined),
+          : (item.provider ? String(item.provider).split(/\s*[×Xx]\s*/).map((part) => part.trim()).filter(Boolean) : undefined),
         chimera: item.chimera && typeof item.chimera === 'object' && !Array.isArray(item.chimera)
           ? {
             ...item.chimera,

@@ -6,6 +6,7 @@ import test from 'node:test';
 
 import { applyToolCall } from '../scripts/tools.js';
 import { getMergedRacePhysiologyProfile } from '../scripts/race_config.js';
+import { assertSafeDirectApiBase } from '../scripts/api.js';
 
 function makeCharacter(overrides = {}) {
   return {
@@ -105,4 +106,25 @@ test('未知混血成分被标记而非静默丢弃', () => {
 test('同基种族 subtype 混血不重复加权', () => {
   const merged = getMergedRacePhysiologyProfile('兽耳族-兔x人类x兽耳族-猫');
   assert.ok(Math.abs(merged.gestationSpeciesSpeed - 1.2307692307692308) < 0.0001);
+});
+
+test('assertSafeDirectApiBase：远程 http（含畸形前缀）一律拒绝', () => {
+  for (const base of ['http://api.example.com/v1', 'http:/api.example.com', 'http:api.example.com']) {
+    assert.throws(() => assertSafeDirectApiBase(base), /仅允许 localhost/, `base=${base} 应被拒绝`);
+  }
+});
+
+test('assertSafeDirectApiBase：localhost/IPv6/https/相对路径放行', () => {
+  for (const base of [
+    'http://localhost:11434',
+    'http://127.0.0.1:11434',
+    'http://[::1]:11434',
+    'https://api.example.com/v1',
+    '/v1',
+    'api/v1',
+    'localhost:8000',
+  ]) {
+    assert.doesNotThrow(() => assertSafeDirectApiBase(base), `base=${base} 应放行`);
+  }
+  assert.throws(() => assertSafeDirectApiBase('http://'), /无法解析/);
 });

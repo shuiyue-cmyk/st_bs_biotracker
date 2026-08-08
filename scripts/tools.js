@@ -3218,7 +3218,7 @@ function applyChildbirth(chatState, args) {
   const childbirthStage = String(profile?.base?.stage || '');
   const childbirthAllowedStages = ['孕早期', '孕中期', '孕晚期', '临产期', '逾期', '产兆前驱', '第一产程', '第二产程', '第三产程'];
   if (!childbirthAllowedStages.includes(childbirthStage)) {
-    return { applied: false, message: `bsChildbirth skipped for ${female}: stage ${childbirthStage || '(none)'} 不允许手术分娩（需已着床进入妊娠阶段；逾期角色请先进入产兆前驱或产程）。` };
+    return { applied: false, message: `bsChildbirth skipped for ${female}: stage ${childbirthStage || '(none)'} 不允许手术分娩（需已着床进入妊娠阶段；假孕期/未着床请先推进剧情）。` };
   }
 
   profile.__runtimeRef = next.runtime || {};

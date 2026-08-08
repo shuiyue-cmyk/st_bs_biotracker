@@ -104,9 +104,11 @@ function shouldUseHostProxy(url) {
  * 直连会把 API Key 放进 Authorization 头；远程 http 端点属于明文传输，
  * 仅放行 localhost 的 http（本地 Ollama/代理调试场景）。
  * 相对路径/无 scheme 的 apiBase 视为同源路径（浏览器自行解析），不在此列。
+ * 前缀判定须覆盖任何 http(s) scheme 形式（含 `http:`/`http:/` 这类少打斜杠的畸形串，
+ * WHATWG 会把它解析成远程主机，不能只认 `http://`）。
  */
-function assertSafeDirectApiBase(apiBase) {
-  if (!/^https?:\/\//i.test(String(apiBase || ''))) return;
+export function assertSafeDirectApiBase(apiBase) {
+  if (!/^https?:/i.test(String(apiBase || ''))) return;
   try {
     const url = new URL(apiBase);
     // WHATWG URL 对 IPv6 回环返回带方括号的 hostname（'[::1]'），须去掉再比较
