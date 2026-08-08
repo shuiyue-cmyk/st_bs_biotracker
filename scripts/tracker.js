@@ -837,7 +837,7 @@ function mergeTrackerWorldbookLists(...lists) {
   return merged;
 }
 
-function getMainflowContextSnapshot(ctx) {
+export function getMainflowContextSnapshot(ctx) {
   const snapshot = globalThis[MAINFLOW_CONTEXT_SNAPSHOT_KEY];
   if (!snapshot || typeof snapshot !== 'object') return null;
   // 快照必须绑定当前聊天：无绑定（旧格式）或绑定不一致的快照一律视为失效
