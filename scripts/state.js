@@ -60,6 +60,7 @@ export const THEME_CONFIG = {
   eldritch: {},
   ink: {},
   constructivism: {},
+  apple: {},
 };
 
 export const DEFAULT_WARDROBE_PREP_PROMPT = [
