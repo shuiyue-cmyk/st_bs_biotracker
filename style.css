@@ -337,10 +337,10 @@
 }
 
 #bs-biotracker-settings.theme-apple .bs-bt-brand {
-  color: rgba(255, 255, 255, 0.85);
+  color: #6e6e73;
   font-weight: 600;
   letter-spacing: 0.02em;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: none;
   font-size: 12px;
 }
 
@@ -367,7 +367,7 @@
 #bs-biotracker-settings.theme-apple .bs-bt-theme-option.is-active {
   background: #007aff;
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 700;
   border-color: #007aff;
   box-shadow: none;
   border-radius: 8px;
