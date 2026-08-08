@@ -355,17 +355,20 @@
   background-position: 50% 0%;
   background-repeat: no-repeat;
   filter: blur(48px) saturate(200%);
-  transform: scale(1.12); /* 放大防 blur 边缘露底色 */
+  transform: scale(1.5); /* 放大防 blur(48px) 边缘露底色（需 ≥1.3，理想 1.5） */
   pointer-events: none;
 }
 
 /* 白蒙层：半透明白盖在图层上、内容下，柔化过曝的冰蓝 */
+/* 注意：必须显式 opacity:1——基础扫描线规则给 ::after 设了 opacity:0.2，
+   不重置会把白蒙稀释 7 倍形同虚设 */
 #bs-biotracker-settings.theme-apple .bs-bt-screen::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
   background: rgba(245, 245, 247, 0.14);
+  opacity: 1;
   pointer-events: none;
 }
 
