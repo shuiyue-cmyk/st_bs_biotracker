@@ -9,7 +9,8 @@ function sanitizePromptText(value) {
   return String(value ?? '')
     .replace(/[\r\n\t]/g, ' ')
     .replace(/<\//g, '<\\/')
-    .replace(/[\u0000-\u001f\u007f]/g, ' ')
+    // C0 (\u0000-\u001f) + DEL (\u007f) + C1 控制区 (\u0080-\u009f，含 NEL U+0085)
+    .replace(/[\u0000-\u001f\u007f\u0080-\u009f]/g, ' ')
     .trim();
 }
 
@@ -277,7 +278,7 @@ function buildSpermCalculationBlock(characterState) {
   const lines = [
     '[异种精液受精补充设定]',
     '以下为系统在非怀孕状态下处理异种精液时使用的简化判断逻辑，请据此理解该角色当前的受孕难度与后代性别倾向。',
-    `- 母体种族: ${motherRace}`,
+    `- 母体种族: ${sanitizePromptText(motherRace)}`,
     `- 母体受精难度: ${formatNumber(motherDifficulty)} (${getImpregnationDifficultyText(motherDifficulty)})`,
     `- 母体胚胎类型: ${motherEmbryoType}`,
   ];
@@ -295,12 +296,12 @@ function buildSpermCalculationBlock(characterState) {
     lines.push(
       [
         `【异种精液 ${index + 1}】`,
-        `- 精方: ${String(sperm?.male || '未知')} / ${fatherRace}`,
+        `- 精方: ${sanitizePromptText(String(sperm?.male || '未知'))} / ${sanitizePromptText(fatherRace)}`,
         `- 精方受精难度: ${formatNumber(fatherDifficulty)} (${getImpregnationDifficultyText(fatherDifficulty)})`,
         `- 精方胚胎类型: ${fatherEmbryoType}`,
         `- 系统受精难度计算: 母体 ${formatNumber(motherDifficulty)} + 精方 ${formatNumber(fatherDifficulty)}${motherEmbryoType !== fatherEmbryoType ? `，且因胚胎类型不同（${motherEmbryoType} vs ${fatherEmbryoType}）再 ×1.5` : ''} = ${formatNumber(effectiveDifficulty)}`,
-        `- 混合后胎儿种族: ${fetusRace}`,
-        `- 系统性别比计算: 以后代种族 ${fetusRace} 的 genderRatio 为准，当前结果为 ${getGenderRatioDisplay(fetusGenderRatio)} (${getGenderRatioText(fetusGenderRatio)})`,
+        `- 混合后胎儿种族: ${sanitizePromptText(fetusRace)}`,
+        `- 系统性别比计算: 以后代种族 ${sanitizePromptText(fetusRace)} 的 genderRatio 为准，当前结果为 ${getGenderRatioDisplay(fetusGenderRatio)} (${getGenderRatioText(fetusGenderRatio)})`,
       ].join('\n'),
     );
   });
@@ -371,7 +372,7 @@ function buildPregnancyShiftBlock(characterState) {
   return [
     '[妊娠生理偏移补充设定]',
     '以下为系统在怀孕后依据胎儿种族、胚胎类型、胎数与胎重，对母体生理参数产生的偏移结果。',
-    `- 母体种族: ${motherRace}`,
+    `- 母体种族: ${sanitizePromptText(motherRace)}`,
     `- 妊娠长度偏移: ${describeShift(gestationShiftedDays, gestationBaseDays, (value) => formatGestation(280 / value))}`,
     `- 分娩难度偏移: ${describeShift(shiftedBirthDifficulty, baseBirthDifficulty, (value) => `${formatNumber(value)}（${getBirthDifficultyText(value)}）`)}`,
     `- 产后恢复时间偏移: ${describeShift(shiftedRecoveryDays, baseRecoveryDays, (value) => formatRecoveryDays(value))}`,
