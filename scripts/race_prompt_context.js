@@ -1,5 +1,18 @@
 import { getDerivedTypeFluxProfile, getDerivedTypeIntroductionLine, getDerivedTypeMetabolismExemptions, getEmbryoTypeByRace, getMergedRacePhysiologyProfile, getRaceComponents, getRaceDescriptorComponents, getRaceIntroductionLine, getRacePhysiologyProfile } from './race_config.js';
 
+/**
+ * 提示词插值防线：剥离换行、闭合标签与控制字符——race/derivedType 等用户可控字符串
+ * 直接拼进高优先级规则段（<bs_race>），含换行或 `</` 可闭合段注入伪指令（安全审查 P1/P2）。
+ * 只影响显示，不改语义（种族名本身不含换行才是合法）。
+ */
+function sanitizePromptText(value) {
+  return String(value ?? '')
+    .replace(/[\r\n\t]/g, ' ')
+    .replace(/<\//g, '<\\/')
+    .replace(/[\u0000-\u001f\u007f]/g, ' ')
+    .trim();
+}
+
 function formatNumber(value, digits = 2) {
   const num = Number(value);
   if (!Number.isFinite(num)) return '未知';
@@ -174,7 +187,7 @@ function buildSingleRacePhysiologyBlock(race) {
   if (!profile) return '';
   const introductionLine = getRaceIntroductionLine(race);
   return [
-    `【${race}】`,
+    `【${sanitizePromptText(race)}】`,
     introductionLine ? `- 物种短敘述: ${introductionLine}` : '',
     `- 经期长度: ${formatCycleDays(profile.menstrualLengthRatio)}`,
     `- 妊娠长度: ${formatGestation(profile.gestationSpeciesSpeed)}`,
@@ -215,7 +228,7 @@ function buildRacePhysiologyLoreBlock(race) {
   if (components.length === 1) return [`[种族生理补充设定]`, buildSingleRacePhysiologyBlock(components[0])].join('\n');
   return [
     '[种族生理补充设定]',
-    `该角色为混血/复合种族：${components.join(' x ')}`,
+    `该角色为混血/复合种族：${components.map(sanitizePromptText).join(' x ')}`,
     '请同时理解各族生理参数，不要把混血直接脑补成单一物种。',
     ...components.map((part) => buildSingleRacePhysiologyBlock(part)).filter(Boolean),
     buildHybridAverageBlock(value),
@@ -232,7 +245,7 @@ function buildDerivedFluxLoreBlock(derivedType) {
   const exemptions = getDerivedTypeMetabolismExemptions(value);
   return [
     '[衍生需求补充设定]',
-    `【${value}】`,
+    `【${sanitizePromptText(value)}】`,
     ...(introductionLine ? [introductionLine] : []),
     `该衍生类型由 flux 抵免的普通需求：${exemptions.length > 0 ? exemptions.join(' / ') : '无'}。未被抵免的需求仍会作为 metabolism 保留。`,
     fluxDefinition,
