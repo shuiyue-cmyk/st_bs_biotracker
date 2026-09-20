@@ -1,4 +1,5 @@
 import { fetchModelList } from './scripts/api.js';
+import { applyLocaleToPanel } from './scripts/locale.js';
 import {
   applyInitialSkillTalentConfig,
   applyRegistryBreedingInference,
@@ -83,6 +84,7 @@ import {
   DEFAULT_SYSTEM_PROMPT,
   getApiUrlForFormat,
   normalizeApiFormat,
+  normalizeLocale,
   normalizeReasoningEffort,
   resolveUserTemperature,
   getCharacterWorldBookName,
@@ -6265,6 +6267,8 @@ function applySettingsToForm(ctx) {
   setValue('bs-bt-model', settings.model);
   setValue('bs-bt-temperature', resolveUserTemperature(settings) ?? '');
   setValue('bs-bt-reasoning-effort', normalizeReasoningEffort(settings.reasoningEffort));
+  setValue('bs-bt-language', normalizeLocale(settings.locale));
+  applyLocaleToPanel(document.getElementById(PANEL_ID), normalizeLocale(settings.locale));
   updateApiEndpointPreview();
   setValue('bs-bt-formatted-output-v4', settings.formattedOutputV4 !== false);
   setValue('bs-bt-trigger', settings.triggerTiming);
@@ -6611,6 +6615,8 @@ function findPromptListScopes(doc) {
   const nodes = Array.from(doc.querySelectorAll('div, section, form'));
   return nodes.filter((node) => {
     if (!(node instanceof HTMLElement)) return false;
+    // 自家面板/弹窗永远不是 ST 提示词管理器：结构排除，不随界面语言漂移
+    if (node.closest(`#${PANEL_ID},#${MODAL_ID}`)) return false;
     const text = String(node.textContent || '');
     if (!/名称|name/i.test(text) || !/token/i.test(text)) return false;
     const toggleCount = collectToggleNodes(node).length;
@@ -6620,6 +6626,7 @@ function findPromptListScopes(doc) {
 
 function isPromptListRow(row) {
   if (!(row instanceof HTMLElement)) return false;
+  if (row.closest(`#${PANEL_ID},#${MODAL_ID}`)) return false;
   const text = extractVisibleText(row);
   if (!text || text.length < 2 || text.length > 120) return false;
   if (/刷新预设列表|跟随 ST 当前预设|裸请求|Tracker 专用预设|总 Token 数量/.test(text)) return false;
@@ -6831,6 +6838,8 @@ function readSettingsFromForm(ctx) {
   settings.model = String(getValue('bs-bt-model')).trim();
   settings.temperature = resolveUserTemperature({ temperature: getValue('bs-bt-temperature') });
   settings.reasoningEffort = normalizeReasoningEffort(getValue('bs-bt-reasoning-effort'));
+  settings.locale = normalizeLocale(getValue('bs-bt-language'));
+  applyLocaleToPanel(document.getElementById(PANEL_ID), settings.locale);
   const formattedOutputToggle = document.getElementById('bs-bt-formatted-output-v4');
   if (formattedOutputToggle) settings.formattedOutputV4 = Boolean(formattedOutputToggle.checked);
   settings.triggerTiming = String(getValue('bs-bt-trigger')).trim() || 'after_ai';

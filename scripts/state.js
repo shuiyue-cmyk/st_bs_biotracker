@@ -133,6 +133,17 @@ export function normalizeReasoningEffort(value) {
   return 'auto';
 }
 
+// 介面語言（fork 自用繁化）：'cn' 簡體（預設）、'tw' 臺灣繁體、'hk' 港澳繁體。
+// 只影響設定面板靜態鉻文案；狀態鍵、列舉值、使用者資料與發往模型的提示詞一律不動。
+export const LOCALES = Object.freeze(['cn', 'tw', 'hk']);
+
+export function normalizeLocale(value) {
+  const raw = String(value || '').trim().toLowerCase().replace('_', '-');
+  if (raw === 'tw' || raw === 'zh-tw' || raw === 'taiwan') return 'tw';
+  if (raw === 'hk' || raw === 'zh-hk' || raw === 'hongkong' || raw === 'macau' || raw === 'mo') return 'hk';
+  return 'cn';
+}
+
 export const DEFAULT_TEMPERATURE = 0.2;
 
 export function normalizeTemperature(value) {
@@ -182,6 +193,7 @@ export const DEFAULT_SETTINGS = Object.freeze({
   theme: 'retro',
   deviceSize: 'phone',
   fontSize: 'standard',
+  locale: 'cn',
   // 只有 iphone 主题会读这三项：其余 12 套是固定美术风格，配色是主题本身的一部分
   iphoneBase: 'light',
   iphoneAccent: '#0a84ff',
@@ -936,6 +948,11 @@ export function getSettings(ctx) {
   const normalizedReasoningEffort = normalizeReasoningEffort(settings.reasoningEffort);
   if (settings.reasoningEffort !== normalizedReasoningEffort) {
     settings.reasoningEffort = normalizedReasoningEffort;
+    shouldSave = true;
+  }
+  const normalizedLocale = normalizeLocale(settings.locale);
+  if (settings.locale !== normalizedLocale) {
+    settings.locale = normalizedLocale;
     shouldSave = true;
   }
   // temperature 存储归一：null 表示未配置（走上游逻辑）；0.2 即上游默认值，

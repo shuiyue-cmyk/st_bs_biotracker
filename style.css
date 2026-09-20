@@ -7,7 +7,7 @@
      绿屏＋深炭灰的观感不变，但小字有了余量。 */
   --bsbt-lcd-text: #212526;
   --bsbt-border-color: #1a1a1a;
-  --bsbt-font-main: 'Courier New', 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', Courier, monospace;
+  --bsbt-font-main: 'Courier New', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', Courier, monospace;
   --bsbt-btn-grad-1: #4d5456;
   --bsbt-btn-grad-2: #282e30;
   --bsbt-btn-text: #ffffff;
@@ -28,7 +28,7 @@
      绿屏＋深炭灰的观感不变，但小字有了余量。 */
   --bsbt-lcd-text: #212526;
   --bsbt-border-color: #1a1a1a;
-  --bsbt-font-main: 'Courier New', 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', Courier, monospace;
+  --bsbt-font-main: 'Courier New', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', Courier, monospace;
   --bsbt-btn-grad-1: #4d5456;
   --bsbt-btn-grad-2: #282e30;
   --bsbt-btn-text: #ffffff;
@@ -47,7 +47,7 @@
   --bsbt-lcd-bg: #e0f2f1;
   --bsbt-lcd-text: #004d40;
   --bsbt-border-color: #00695c;
-  --bsbt-font-main: 'Ma Shan Zheng', 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', cursive;
+  --bsbt-font-main: 'Ma Shan Zheng', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', cursive;
   --bsbt-btn-grad-1: #264d4d;
   --bsbt-btn-grad-2: #0d1a1a;
   --bsbt-btn-text: #a7ffeb;
@@ -66,7 +66,7 @@
   --bsbt-lcd-bg: #f5e6c8;
   --bsbt-lcd-text: #3e2723;
   --bsbt-border-color: #795548;
-  --bsbt-font-main: 'Long Cang', 'Noto Serif TC', 'Microsoft JhengHei', 'PingFang TC', serif;
+  --bsbt-font-main: 'Long Cang', 'Noto Serif TC', 'Noto Serif HK', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', serif;
   --bsbt-btn-grad-1: #8d6e63;
   --bsbt-btn-grad-2: #3e2723;
   --bsbt-btn-text: #efebe9;
@@ -85,7 +85,7 @@
   --bsbt-lcd-bg: #00f2ff;
   --bsbt-lcd-text: #002b2b;
   --bsbt-border-color: #002b2b;
-  --bsbt-font-main: 'Audiowide', 'Chocolate Classical Sans', 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', sans-serif;
+  --bsbt-font-main: 'Audiowide', 'Chocolate Classical Sans', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', sans-serif;
   --bsbt-btn-grad-1: #daa520;
   --bsbt-btn-grad-2: #8b4513;
   --bsbt-btn-text: #002b2b;
@@ -104,7 +104,7 @@
   --bsbt-lcd-bg: #0d120a;
   --bsbt-lcd-text: #18ff62;
   --bsbt-border-color: #3d4421;
-  --bsbt-font-main: 'Silkscreen', 'DotGothic16', 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', cursive;
+  --bsbt-font-main: 'Silkscreen', 'DotGothic16', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', cursive;
   --bsbt-btn-grad-1: #6b7a3f;
   --bsbt-btn-grad-2: #2d3516;
   --bsbt-btn-text: #18ff62;
@@ -125,7 +125,7 @@
      换成同系的深玫瑰（与按钮字色 #ad1457 同族）后升到 5.87，粉色调不变。 */
   --bsbt-lcd-text: #c2185b;
   --bsbt-border-color: #f8bbd0;
-  --bsbt-font-main: 'Chewy', 'ZCOOL KuaiLe', 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', sans-serif;
+  --bsbt-font-main: 'Chewy', 'ZCOOL KuaiLe', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', sans-serif;
   --bsbt-btn-grad-1: #ffffff;
   --bsbt-btn-grad-2: #f48fb1;
   --bsbt-btn-text: #ad1457;
@@ -144,7 +144,7 @@
   --bsbt-lcd-bg: rgba(3, 28, 52, 0.22);
   --bsbt-lcd-text: #8df7ff;
   --bsbt-border-color: rgba(74, 223, 255, 0.74);
-  --bsbt-font-main: 'Chiron GoRound TC', 'Noto Sans TC', 'Microsoft JhengHei UI', 'PingFang TC', sans-serif;
+  --bsbt-font-main: 'Chiron GoRound TC', 'Noto Sans TC', 'Noto Sans HK', 'Microsoft JhengHei UI', 'PingFang TC', 'PingFang HK', sans-serif;
   --bsbt-btn-grad-1: rgba(22, 198, 255, 0.16);
   --bsbt-btn-grad-2: rgba(10, 82, 155, 0.1);
   --bsbt-btn-text: #b8fbff;
@@ -168,7 +168,7 @@
   --bsbt-lcd-bg: #1a1016;
   --bsbt-lcd-text: #e8d8cf;
   --bsbt-border-color: #8f3f4b;
-  --bsbt-font-main: 'ZCOOL XiaoWei', 'Noto Serif TC', 'Microsoft JhengHei', 'PingFang TC', serif;
+  --bsbt-font-main: 'ZCOOL XiaoWei', 'Noto Serif TC', 'Noto Serif HK', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', serif;
   --bsbt-btn-grad-1: #5c2734;
   --bsbt-btn-grad-2: #160a10;
   --bsbt-btn-text: #eadbd2;
@@ -194,7 +194,7 @@
   --bsbt-lcd-bg: #ead8b4;
   --bsbt-lcd-text: #2a1b12;
   --bsbt-border-color: #8a4b2d;
-  --bsbt-font-main: 'Special Elite', 'Noto Serif TC', 'Courier New', serif;
+  --bsbt-font-main: 'Special Elite', 'Noto Serif TC', 'Noto Serif HK', 'Courier New', serif;
   --bsbt-btn-grad-1: #b88a3d;
   --bsbt-btn-grad-2: #4a2f1f;
   --bsbt-btn-text: #f4e4c2;
@@ -220,7 +220,7 @@
   --bsbt-lcd-bg: #12302f;
   --bsbt-lcd-text: #d7efe8;
   --bsbt-border-color: #5c8f83;
-  --bsbt-font-main: 'UnifrakturCook', 'Zhi Mang Xing', 'Noto Serif TC', 'Microsoft JhengHei', 'PingFang TC', serif;
+  --bsbt-font-main: 'UnifrakturCook', 'Zhi Mang Xing', 'Noto Serif TC', 'Noto Serif HK', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', serif;
   --bsbt-btn-grad-1: #3b2430;
   --bsbt-btn-grad-2: #101714;
   --bsbt-btn-text: #d7efe8;
@@ -245,7 +245,7 @@
   --bsbt-lcd-bg: rgba(243, 234, 216, 0.82);
   --bsbt-lcd-text: #1f2522;
   --bsbt-border-color: rgba(31, 37, 34, 0.42);
-  --bsbt-font-main: 'LXGW WenKai TC', 'Noto Serif TC', 'Microsoft JhengHei', 'PingFang TC', serif;
+  --bsbt-font-main: 'LXGW WenKai TC', 'Noto Serif TC', 'Noto Serif HK', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', serif;
   --bsbt-btn-grad-1: #f3ead8;
   --bsbt-btn-grad-2: #dfd1b6;
   --bsbt-btn-text: #1f2522;
@@ -397,7 +397,7 @@
   --bsbt-lcd-bg: #ffffff;
   --bsbt-lcd-text: #1c1c1e;
   --bsbt-border-color: rgba(60, 60, 67, 0.20);
-  --bsbt-font-main: var(--bsbt-user-font, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', system-ui, sans-serif);
+  --bsbt-font-main: var(--bsbt-user-font, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang TC', 'PingFang HK', 'Microsoft JhengHei', 'Noto Sans TC', 'Noto Sans HK', system-ui, sans-serif);
   --bsbt-btn-grad-1: #ffffff;
   --bsbt-btn-grad-2: #f2f2f7;
   --bsbt-btn-text: var(--bsbt-accent);
@@ -470,7 +470,7 @@
   --bsbt-lcd-bg: #d8d2c3;
   --bsbt-lcd-text: #141414;
   --bsbt-border-color: #141414;
-  --bsbt-font-main: 'WDXL Lubrifont SC', 'Microsoft JhengHei', 'PingFang TC', 'Noto Sans TC', sans-serif;
+  --bsbt-font-main: 'WDXL Lubrifont SC', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', sans-serif;
   --bsbt-btn-grad-1: #b62525;
   --bsbt-btn-grad-2: #141414;
   --bsbt-btn-text: #ece3cf;
