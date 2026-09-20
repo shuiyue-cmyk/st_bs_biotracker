@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import { I18N_STATS, I18N_TABLES } from '../scripts/i18n_tables.js';
-import { convertString } from '../scripts/locale.js';
+import { applyLocaleToPanel, convertString } from '../scripts/locale.js';
 import { LOCALES, normalizeLocale } from '../scripts/state.js';
 
 test('normalizeLocale accepts cn/tw/hk with aliases, defaults to cn', () => {
@@ -71,6 +71,32 @@ test('tables contain no locked state keys and no residual mis-conversions', () =
 function ord(ch) {
   return ch.codePointAt(0);
 }
+
+test('applyLocaleToPanel stamps documentElement so CSS can swap the font stack', () => {
+  const prevDocument = globalThis.document;
+  const prevNodeFilter = globalThis.NodeFilter;
+  const doc = {
+    documentElement: { dataset: {} },
+    createTreeWalker: () => ({ nextNode: () => null }),
+  };
+  globalThis.document = doc;
+  globalThis.NodeFilter = { SHOW_TEXT: 4 };
+  const root = { querySelectorAll: () => [] };
+  try {
+    applyLocaleToPanel(root, 'tw');
+    assert.equal(doc.documentElement.dataset.bsbtLocale, 'tw');
+    applyLocaleToPanel(root, 'hk');
+    assert.equal(doc.documentElement.dataset.bsbtLocale, 'hk');
+    // 切回簡體必須撤掉標記，否則繁體字體棧會殘留
+    applyLocaleToPanel(root, 'cn');
+    assert.equal(doc.documentElement.dataset.bsbtLocale, 'cn');
+    applyLocaleToPanel(root, undefined);
+    assert.equal(doc.documentElement.dataset.bsbtLocale, 'cn');
+  } finally {
+    globalThis.NodeFilter = prevNodeFilter;
+    globalThis.document = prevDocument;
+  }
+});
 
 test('table stats match actual key counts', () => {
   assert.equal(Object.keys(I18N_TABLES.tw).length, I18N_STATS.entries);

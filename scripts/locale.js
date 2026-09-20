@@ -121,6 +121,8 @@ function convertAttr(element, attr, table) {
 /** 對面板子樹做一次靜態繁化（或切回簡體還原）。無 document 環境下為空操作。 */
 export function applyLocaleToPanel(root, locale) {
   if (typeof document === 'undefined' || !root || typeof root.querySelectorAll !== 'function') return;
+  // 供 style.css 依語言切換字體棧（簡體裝飾字型缺繁體字形，需整棧替換）
+  if (document.documentElement) document.documentElement.dataset.bsbtLocale = locale || 'cn';
   const table = conversionTable(locale);
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   const textNodes = [];

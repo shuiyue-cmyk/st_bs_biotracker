@@ -7442,6 +7442,24 @@ async function ensureModal(ctx) {
       setView('theme');
     }),
   );
+  document.getElementById('bs-bt-language')?.addEventListener('change', (event) => {
+    const nextLocale = normalizeLocale(event.target?.value);
+    let settings = null;
+    try {
+      settings = getSettings(ctx);
+    } catch (error) {
+      console.error('[BS BioTracker] getSettings failed on locale switch, applying without persistence', error);
+    }
+    if (settings) {
+      settings.locale = nextLocale;
+      try {
+        saveSettings(ctx);
+      } catch (error) {
+        console.error('[BS BioTracker] saveSettings failed on locale switch', error);
+      }
+    }
+    applyLocaleToPanel(document.getElementById(PANEL_ID), nextLocale);
+  });
   // iPhone 主题的三项自订：与主题切换同样容错，设置读写失败也要让 UI 先套用
   const commitIphoneSetting = (mutate) => {
     let settings = null;
