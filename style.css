@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Chiron+GoRound+TC:wght@400;700&family=Ma+Shan+Zheng&family=Long+Cang&family=LXGW+WenKai+TC&family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@400;700&family=Special+Elite&family=UnifrakturCook:wght@700&family=Zhi+Mang+Xing&family=Audiowide&family=Chocolate+Classical+Sans&family=Silkscreen&family=DotGothic16&family=WDXL+Lubrifont+SC&family=ZCOOL+KuaiLe&family=ZCOOL+XiaoWei&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Chiron+GoRound+TC:wght@400;700&family=Ma+Shan+Zheng&family=Long+Cang&family=LXGW+WenKai+TC&family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@400;700&family=Special+Elite&family=UnifrakturCook:wght@700&family=Zhi+Mang+Xing&family=Audiowide&family=Chocolate+Classical+Sans&family=Silkscreen&family=DotGothic16&family=WDXL+Lubrifont+SC&family=ZCOOL+KuaiLe&family=ZCOOL+XiaoWei&family=Iansui&family=Cactus+Classical+Serif&display=swap');
+
+/* Cubic 11 不在 Google Fonts，自托管；OFL 见 fonts/OFL-Cubic-11.txt */
+@font-face {
+  font-family: 'Cubic 11';
+  src: url('fonts/Cubic_11.ttf') format('truetype');
+  font-display: swap;
+}
 
 :root {
   --bsbt-pager-bg: #2d3436;
@@ -47,7 +54,7 @@
   --bsbt-lcd-bg: #e0f2f1;
   --bsbt-lcd-text: #004d40;
   --bsbt-border-color: #00695c;
-  --bsbt-font-main: 'Ma Shan Zheng', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', cursive;
+  --bsbt-font-main: 'Ma Shan Zheng', 'LXGW WenKai TC', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', cursive;
   --bsbt-btn-grad-1: #264d4d;
   --bsbt-btn-grad-2: #0d1a1a;
   --bsbt-btn-text: #a7ffeb;
@@ -66,7 +73,7 @@
   --bsbt-lcd-bg: #f5e6c8;
   --bsbt-lcd-text: #3e2723;
   --bsbt-border-color: #795548;
-  --bsbt-font-main: 'Long Cang', 'Noto Serif TC', 'Noto Serif HK', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', serif;
+  --bsbt-font-main: 'Long Cang', 'Iansui', 'Noto Serif TC', 'Noto Serif HK', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', serif;
   --bsbt-btn-grad-1: #8d6e63;
   --bsbt-btn-grad-2: #3e2723;
   --bsbt-btn-text: #efebe9;
@@ -104,7 +111,7 @@
   --bsbt-lcd-bg: #0d120a;
   --bsbt-lcd-text: #18ff62;
   --bsbt-border-color: #3d4421;
-  --bsbt-font-main: 'Silkscreen', 'DotGothic16', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', cursive;
+  --bsbt-font-main: 'Silkscreen', 'DotGothic16', 'Cubic 11', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', cursive;
   --bsbt-btn-grad-1: #6b7a3f;
   --bsbt-btn-grad-2: #2d3516;
   --bsbt-btn-text: #18ff62;
@@ -125,7 +132,7 @@
      换成同系的深玫瑰（与按钮字色 #ad1457 同族）后升到 5.87，粉色调不变。 */
   --bsbt-lcd-text: #c2185b;
   --bsbt-border-color: #f8bbd0;
-  --bsbt-font-main: 'Chewy', 'ZCOOL KuaiLe', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', sans-serif;
+  --bsbt-font-main: 'Chewy', 'ZCOOL KuaiLe', 'Chiron GoRound TC', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', 'Noto Sans TC', 'Noto Sans HK', sans-serif;
   --bsbt-btn-grad-1: #ffffff;
   --bsbt-btn-grad-2: #f48fb1;
   --bsbt-btn-text: #ad1457;
@@ -168,7 +175,7 @@
   --bsbt-lcd-bg: #1a1016;
   --bsbt-lcd-text: #e8d8cf;
   --bsbt-border-color: #8f3f4b;
-  --bsbt-font-main: 'ZCOOL XiaoWei', 'Noto Serif TC', 'Noto Serif HK', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', serif;
+  --bsbt-font-main: 'ZCOOL XiaoWei', 'Cactus Classical Serif', 'Noto Serif TC', 'Noto Serif HK', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', serif;
   --bsbt-btn-grad-1: #5c2734;
   --bsbt-btn-grad-2: #160a10;
   --bsbt-btn-text: #eadbd2;
@@ -220,7 +227,7 @@
   --bsbt-lcd-bg: #12302f;
   --bsbt-lcd-text: #d7efe8;
   --bsbt-border-color: #5c8f83;
-  --bsbt-font-main: 'UnifrakturCook', 'Zhi Mang Xing', 'Noto Serif TC', 'Noto Serif HK', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', serif;
+  --bsbt-font-main: 'UnifrakturCook', 'Zhi Mang Xing', 'Iansui', 'Noto Serif TC', 'Noto Serif HK', 'Microsoft JhengHei', 'PingFang TC', 'PingFang HK', serif;
   --bsbt-btn-grad-1: #3b2430;
   --bsbt-btn-grad-2: #101714;
   --bsbt-btn-text: #d7efe8;
